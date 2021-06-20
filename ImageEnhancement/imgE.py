@@ -1,13 +1,14 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy, scipy.misc, scipy.signal
+import base64
 import cv2
-import os
-from skimage.transform import resize
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy
+import scipy.misc
 import scipy.misc
 import scipy.ndimage
+import scipy.signal
 import scipy.stats
-import base64
+from skimage.transform import resize
 
 
 def computeTextureWeights(fin, sigma, sharpness):
