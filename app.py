@@ -10,6 +10,11 @@ app = Flask(__name__)
 prediction = ""
 
 
+@app.route('/', methods=['GET'])
+def HelloWorld():
+    return "Hello Form AI"
+
+
 @app.route('/api/ai/heart_disease', methods=['GET', 'POST'])
 def heart():
     if request.method == 'POST':
