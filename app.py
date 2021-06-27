@@ -17,6 +17,7 @@ def HelloWorld():
 
 @app.route('/api/ai/heart_disease', methods=['GET', 'POST'])
 def heart():
+    print("Heart")
     if request.method == 'POST':
         content = request.json
         try:
@@ -58,9 +59,7 @@ def HVJFP():
             vomiting_feeling = content['vomiting_feeling']
             yellowish_urine = content['yellowish_urine']
             indigestion = content['indigestion']
-            print("hello")
-            print(HVJFp(temperature, pulse_rate, la_pain, ua_pain, vomiting_feeling, yellowish_urine, indigestion))
-            return "00"
+            return HVJFp(temperature, pulse_rate, la_pain, ua_pain, vomiting_feeling, yellowish_urine, indigestion)
         except Exception as e:
             return e
     else:
@@ -81,4 +80,4 @@ def IE():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host="192.168.0.102")

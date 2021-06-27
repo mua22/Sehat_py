@@ -1,13 +1,18 @@
 import base64
+import os
+from io import BytesIO
+
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import scipy
 import scipy.misc
 import scipy.misc
 import scipy.ndimage
 import scipy.signal
 import scipy.stats
+from PIL import Image
 from skimage.transform import resize
 
 
@@ -150,9 +155,15 @@ def Ying_2017_CAIP(img, mu=0.5, a=-0.3293, b=1.1258):
 
 
 def ImageEnhacement(image):
+
     nparr = np.frombuffer(base64.b64decode(image), np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     result = Ying_2017_CAIP(img)
-    plt.imshow(result)
-    plt.show()
-    return base64.b64encode(result)
+    img = Image.fromarray(result, 'RGB')
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    buffered.seek(0)
+    img_byte = buffered.getvalue()
+    img_str = "data:image/jpeg;base64," + base64.b64encode(img_byte).decode()
+    print(len(img_str))
+    return img_str

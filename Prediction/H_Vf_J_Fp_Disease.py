@@ -11,12 +11,12 @@ def HVJFp(temperature, pulse_rate, la_pain, ua_pain, vomiting_feeling, yellowish
          'Vomiting_Feeling': [vomiting_feeling], 'Yellowish_Urine': [yellowish_urine], 'Indigestion': [indigestion]})
     predictions = load_model.predict(user_input)
     if predictions == 0:
-        return "heart disease"
+        return "Heart Disease"
     if predictions == 1:
-        return "Viralfever or cold"
+        return "Viral Fever or Cold"
     if predictions == 2:
         return "Jaundice"
     if predictions == 3:
-        return "Food poisoning"
+        return "Food Poisoning"
     if predictions == 4:
         return "Normal"
