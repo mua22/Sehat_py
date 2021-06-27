@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import datetime
 
 from ImageEnhancement.imgE import ImageEnhacement
+from ImageRegistration.fourPointTransform import ImageRegistration
 from Prediction.H_Vf_J_Fp_Disease import HVJFp
 from Prediction.HeartDisease import heartpredict
 from Prediction.SymptomPrediction import SymptomPrediction
@@ -74,6 +75,19 @@ def IE():
         try:
             bas64_image = content['pic_base64']
             return ImageEnhacement(bas64_image)
+        except Exception as e:
+            return e
+    else:
+        return "Error in Image Enhacement"
+
+
+@app.route('/api/ai/image_registration', methods=['GET', 'POST'])
+def IR():
+    if request.method == 'POST':
+        content = request.json
+        try:
+            bas64_image = content['pic_base64']
+            return ImageRegistration(bas64_image)
         except Exception as e:
             return e
     else:

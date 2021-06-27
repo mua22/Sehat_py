@@ -1,8 +1,10 @@
 import base64
+from io import BytesIO
 
 import numpy as np
 import cv2
 import imutils
+from PIL import Image
 
 
 class Register:
@@ -105,4 +107,11 @@ def ImageRegistration(image):
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     test = Register(img)
     result = test.show_TransformedImages()
-    return base64.b64encode(result)
+    img = Image.fromarray(result, 'RGB')
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    buffered.seek(0)
+    img_byte = buffered.getvalue()
+    img_str = "data:image/jpeg;base64," + base64.b64encode(img_byte).decode()
+    print(len(img_str))
+    return img_str
