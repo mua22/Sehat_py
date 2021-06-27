@@ -4,6 +4,7 @@ import datetime
 from ImageEnhancement.imgE import ImageEnhacement
 from Prediction.H_Vf_J_Fp_Disease import HVJFp
 from Prediction.HeartDisease import heartpredict
+from Prediction.SymptomPrediction import SymptomPrediction
 
 app = Flask(__name__)
 
@@ -79,5 +80,40 @@ def IE():
         return "Error in Image Enhacement"
 
 
+@app.route('/api/ai/symptonpredicton', methods=['GET', 'POST'])
+def symmp():
+    if request.method == 'POST':
+        content = request.json
+        # try:
+        itching = content['itching']
+        skin_rash = content['skin_rash']
+        nodal_skin_eruptions = content['nodal_skin_eruptions']
+        continuous_sneezing = content['continuous_sneezing']
+        shivering = content['shivering']
+        chills = content['chills']
+        joint_pain = content['joint_pain']
+        muscle_wasting = content['muscle_wasting']
+        vomiting = content['vomiting']
+        fatigue = content['fatigue']
+        weight_loss = content['weight_loss']
+        restlessness = content['restlessness']
+        irregular_sugar_level = content['irregular_sugar_level']
+        cough = content['cough']
+        high_fever = content['high_fever']
+        breathlessness = content['breathlessness']
+        sweating = content['sweating']
+        headache = content['headache']
+        return SymptomPrediction(itching, skin_rash, nodal_skin_eruptions, continuous_sneezing, shivering, chills,
+                                 joint_pain,
+                                 muscle_wasting, vomiting, fatigue, weight_loss, restlessness,
+                                 irregular_sugar_level, cough, high_fever,
+                                 breathlessness, sweating, headache)
+        # except Exception as e:
+        #     return e
+    else:
+        return "0"
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host="192.168.0.102")
+    app.run(debug=True)
+# host="192.168.0.102"
