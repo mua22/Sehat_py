@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request
-import datetime
+from flask import Flask, request
 
 from ImageEnhancement.imgE import ImageEnhacement
 from ImageRegistration.fourPointTransform import ImageRegistration
@@ -179,6 +178,204 @@ def symmp():
         return "0"
 
 
+@app.route('/api/ai/graphs', methods=['GET', 'POST'])
+def graph():
+    if request.method == 'GET':
+
+        try:
+            data = {
+                "results": [
+                    {
+                        "data": {
+                            "values": [4000, 3643, 6189, 7122, 7886, 8512, 8214, 8812, 7546, 6879, 6504, 6754],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "5-Jul", "7-Jun",
+                                      "14-Jun", "21-Jun", "28-Jun""12-Jul"],
+                            "city": "Karachi"
+                        }
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                3454, 3645, 6189, 6189, 7886, 8001, 6500, 5987, 6789, 7812, 7819, 8255
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Sialkot"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                2458,
+                                1297,
+                                3643,
+                                1354,
+                                3643,
+                                4529,
+                                6145,
+                                7548,
+                                5466,
+                                6189,
+                                5999,
+                                6353,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Faisalabad"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                5000,
+                                5700,
+                                6189,
+                                6189,
+                                7886,
+                                8214,
+                                8812,
+                                8000,
+                                6478,
+                                4500,
+                                4505,
+                                4456,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Rawalpindi"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                2465,
+                                3400,
+                                4000,
+                                4500,
+                                3800,
+                                3200,
+                                3600,
+                                4897,
+                                4100,
+                                5454,
+                                4999,
+                                5252,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Peshawar"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                5542,
+                                4000,
+                                3800,
+                                3100,
+                                2687,
+                                2451,
+                                1987,
+                                1546,
+                                1244,
+                                1000,
+                                850,
+                                381,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Multan"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                1500,
+                                2200,
+                                2400,
+                                2915,
+                                3451,
+                                3856,
+                                4215,
+                                4965,
+                                5479,
+                                6154,
+                                6648,
+                                7162,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Gujranwala"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                8645,
+                                7886,
+                                9159,
+                                5645,
+                                3359,
+                                1297,
+                                3643,
+                                1297,
+                                3643,
+                                3502,
+                                3000,
+                                2436,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Lahore"
+                        }
+
+                    },
+                    {
+                        "data": {
+                            "values": [
+                                0,
+                                20,
+                                0,
+                                156,
+                                100,
+                                50,
+                                110,
+                                56,
+                                10,
+                                65,
+                                60,
+                                61,
+                            ],
+                            "dates": ["26-Apr", "3-May", "10-May", "17-May", "24-May", "31-May", "7-Jun", "14-Jun",
+                                      "21-Jun", "28-Jun", "5-Jul", "12-Jul"
+                                      ],
+                            "city": "Gilgit"
+                        }
+
+                    },
+
+                ]
+            }
+            return data
+        except Exception as e:
+            return e
+    else:
+        return "Error in Image Enhacement"
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
-# host="192.168.0.102"
+    app.run(debug=True, host="192.168.0.102")
+#
