@@ -107,6 +107,7 @@ def ImageRegistration(image):
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     test = Register(img)
     result = test.show_TransformedImages()
+    print(result)
     img = Image.fromarray(result, 'RGB')
     buffered = BytesIO()
     img.save(buffered, format="PNG")

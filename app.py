@@ -67,7 +67,7 @@ def HVJFP():
         return "0"
 
 
-@app.route('/api/ai/image_enhacement', methods=['GET', 'POST'])
+@app.route('/api/ai/imageEnhancement', methods=['GET', 'POST'])
 def IE():
     if request.method == 'POST':
         content = request.json
@@ -80,7 +80,7 @@ def IE():
         return "Error in Image Enhacement"
 
 
-@app.route('/api/ai/image_registration', methods=['GET', 'POST'])
+@app.route('/api/ai/imageRegistration', methods=['GET', 'POST'])
 def IR():
     if request.method == 'POST':
         content = request.json
@@ -377,5 +377,5 @@ def graph():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="192.168.0.102")
+    app.run(debug=True)
 #
