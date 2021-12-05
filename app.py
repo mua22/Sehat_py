@@ -1,5 +1,4 @@
 from flask import Flask, request
-from flask_cors import CORS, cross_origin
 
 from ImageEnhancement.imgE import ImageEnhacement
 from ImageRegistration.fourPointTransform import ImageRegistration
@@ -8,7 +7,6 @@ from Prediction.HeartDisease import heartpredict
 from Prediction.SymptomPrediction import SymptomPrediction
 
 app = Flask(__name__)
-CORS(app, support_credentials=True)
 
 prediction = ""
 
@@ -70,7 +68,6 @@ def HVJFP():
 
 
 @app.route('/api/ai/imageEnhancement', methods=['GET', 'POST'])
-@cross_origin(supports_credentials=True)
 def IE():
     if request.method == 'POST':
         content = request.json
@@ -84,7 +81,6 @@ def IE():
 
 
 @app.route('/api/ai/imageRegistration', methods=['GET', 'POST'])
-@cross_origin(supports_credentials=True)
 def IR():
     if request.method == 'POST':
         content = request.json
