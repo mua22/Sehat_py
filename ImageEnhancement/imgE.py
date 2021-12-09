@@ -155,15 +155,13 @@ def Ying_2017_CAIP(img, mu=0.5, a=-0.3293, b=1.1258):
 
 
 def ImageEnhacement(image):
-
-    nparr = np.frombuffer(base64.b64decode(image), np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    image = 'Public/' + image
+    print(os.getcwd())
+    img = cv2.imread(image)
+    print(img)
     result = Ying_2017_CAIP(img)
-    img = Image.fromarray(result, 'RGB')
-    buffered = BytesIO()
-    img.save(buffered, format="PNG")
-    buffered.seek(0)
-    img_byte = buffered.getvalue()
-    img_str = "data:image/jpeg;base64," + base64.b64encode(img_byte).decode()
-    print(len(img_str))
+    print(result)
+    img_str = "data:image/png;base64," + base64.b64encode(cv2.imencode('.jpg', result)[1]).decode()
+    print(img_str[:100])
     return img_str
+

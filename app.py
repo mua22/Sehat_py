@@ -1,5 +1,5 @@
 from flask import Flask, request
-
+from flask_cors import CORS, cross_origin
 from ImageEnhancement.imgE import ImageEnhacement
 from ImageRegistration.fourPointTransform import ImageRegistration
 from Prediction.H_Vf_J_Fp_Disease import HVJFp
@@ -7,7 +7,8 @@ from Prediction.HeartDisease import heartpredict
 from Prediction.SymptomPrediction import SymptomPrediction
 
 app = Flask(__name__)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 prediction = ""
 
 
@@ -81,10 +82,13 @@ def IE():
 
 
 @app.route('/api/ai/imageRegistration', methods=['GET', 'POST'])
+@cross_origin(supports_credentials=True)
 def IR():
+    print("hello everyone")
     if request.method == 'POST':
         content = request.json
         try:
+            print("hello everyone")
             bas64_image = content['pic_base64']
             return ImageRegistration(bas64_image)
         except Exception as e:
