@@ -7,7 +7,7 @@ from Prediction.HeartDisease import heartpredict
 from Prediction.SymptomPrediction import SymptomPrediction
 
 app = Flask(__name__)
-cors = CORS(app)
+CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 prediction = ""
 
@@ -69,6 +69,7 @@ def HVJFP():
 
 
 @app.route('/api/ai/imageEnhancement', methods=['GET', 'POST'])
+@cross_origin(supports_credentials=True)
 def IE():
     if request.method == 'POST':
         content = request.json
@@ -98,6 +99,7 @@ def IR():
 
 
 @app.route('/api/ai/symptonpredicton', methods=['GET', 'POST'])
+@cross_origin(supports_credentials=True)
 def symmp():
     if request.method == 'POST':
         content = request.json
@@ -381,5 +383,5 @@ def graph():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
 #
